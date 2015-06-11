@@ -1,5 +1,7 @@
 # CloudComputingSimizer_WEB
 
+This is a web application about the interface of CloudcomputingSimizer.
+
 The main file is the WebApplication.html.
 
 It includes 300+ lines code.
