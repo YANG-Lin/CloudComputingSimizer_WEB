@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta charset="utf-8">
+<!-- viewport-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- viewport的<meta>标签，这个标签可以修改在大部分的移动设备上面的显示，为了确保适当的绘制和触屏缩放。-->
 <title>CloudComputingSimulator</title>
-<!--样式文件引用-->
+<!--stylesheet-->
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -13,20 +13,22 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 	<![endif]
-	IE9以下的浏览器并不支持这些标签，也不能为这些标签进行添加样式。那么修复这个问题我们需要链接引用的文件	
-	意思就是说如果用户IE浏览器的版本小于IE9，那么就会加载这两个js文件库，现在就可以使用这些新的标签，并且可以在这些标签上添加样式了
 -->
+<style type="text/css">
+#div1 {width:60px; height:60px; padding:10px; margin:10px; border:1px solid #aaaaaa;}
+.area {width:137px; height:140px; padding:10px; margin:10px; border:1px solid #aaaaaa;}
+</style>
 
-</head>
-
-<body>
-<!--JavaScript插件都是依赖与jQuery库-->
+<!--JavaScript applies the jQuery store-->
 <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+</head>
 
-<div class="jumbotron">
+<body background="4.jpg">
+
+<div class="jumbotron" style="background-image: url(3.jpg); margin-bottom:0px">
 	<div class="container">
-		<h3 align="center">Cloud Computing Simulator</h3>
+		<h3 align="center" style="color:#FFFFFF">Cloud Computing Simulator</h3>
 	</div>
 </div>
 
@@ -37,17 +39,17 @@
 	<div class="row">
 		<div class="col-md-5">
 			<div class="row">
-				<div class="col-md-2">
-				<span style="font-size:2em" class="glyphicon glyphicon-cloud" aria-hidden="true"></span>Cloud
+				<div class="col-md-2" ondrop="drop(event)" ondragover="allowDrop(event)">
+				<span style="font-size:2em" class="glyphicon glyphicon-cloud" aria-hidden="true" draggable="true" ondragstart="drag(event)" id="drag1"></span>Client
 				</div>
-				<div class="col-md-2">
-				<span style="font-size:2em" class="glyphicon glyphicon-hdd" aria-hidden="true"></span>Network
+				<div class="col-md-2" ondrop="drop(event)" ondragover="allowDrop(event)">
+				<span style="font-size:2em" class="glyphicon glyphicon-hdd" aria-hidden="true" draggable="true" ondragstart="drag(event)" id="drag2"></span>Network
 				</div>
-				<div class="col-md-2">
-				<span style="font-size:2em" class="glyphicon glyphicon-blackboard" aria-hidden="true"></span>Virtual Machine
+				<div class="col-md-2" ondrop="drop(event)" ondragover="allowDrop(event)">
+				<span style="font-size:2em" class="glyphicon glyphicon-blackboard" aria-hidden="true"draggable="true" ondragstart="drag(event)" id="drag3"></span>Virtual Machine
 				</div>
-				<div class="col-md-2">
-				<span style="font-size:2em" class="glyphicon glyphicon-text-background" aria-hidden="true"></span>Applications
+				<div class="col-md-2" ondrop="drop(event)" ondragover="allowDrop(event)">
+				<span style="font-size:2em" class="glyphicon glyphicon-text-background" aria-hidden="true"draggable="true" ondragstart="drag(event)" id="drag4"></span>Applications
 				</div>
 			</div>
 <h4>Drag them to your designing area</h4>
@@ -73,7 +75,7 @@
 				<button type="button" class="btn btn-primary btn-xs">Redo</button>
 				</div>
 				<div class="col-md-1">
-				<button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
+				<button type="button" class="btn btn-success btn-xs" aria-label="Left Align" onclick="Run('file://c:/Users/test.exe')">
 					<span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
 				</div>
 				<div class="col-md-1">
@@ -141,7 +143,9 @@
 				</table>
 				
 				<div class="col-md-6">
-				<button type="button" class="btn btn-primary btn-xs">&nbsp;&nbsp;Add&nbsp;&nbsp;</button>
+				<button type="button" class="btn btn-primary btn-xs" onclick="performClick('theFile');">&nbsp;&nbsp;Add&nbsp;&nbsp;</button>
+				<br><br>
+				<input type="file" id="theFile" />
 				</div>
 				<div class="col-md-6">
 				<button type="button" class="btn btn-primary btn-xs">Delete</button>
@@ -154,24 +158,55 @@
 					  <h3 class="panel-title">Designing Area</h3>
 				   </div>
 				   <div class="panel-body">
-					  &nbsp;<br>
-					  &nbsp;<br>
-					  &nbsp;<br>
-					  &nbsp;<br>
-					  &nbsp;<br>
-					  &nbsp;<br>
-					  &nbsp;<br>
-					  &nbsp;<br>
-					  &nbsp;<br>
-					  &nbsp;<br>
-					  &nbsp;<br>
-					  &nbsp;<br>
-					  &nbsp;<br>
-					  &nbsp;<br>
-					  &nbsp;<br>
-					  &nbsp;<br>
-					  &nbsp;<br>
-					  &nbsp;<br>
+
+						<table class="table">
+							<tbody>
+								<tr>
+									<td rowspan="2" align="center"><div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>Client</td>
+									<td>Name:<input id="Name" type="text" class="form-control" placeholder="..."></td>
+									<td rowspan="2" align="center"><div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>Network</td>
+									<td>Latency:<input id="Latency" type="text" class="form-control" placeholder="..."></td>
+								</tr>
+								<tr>
+									<td>Latitude:<input  id="Latitude" type="text" class="form-control" placeholder="..."></td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td rowspan="3" align="center"><div class="area" id="display"></div></td>
+									<td>Longtitude:<input id="Longtitude" type="text" class="form-control" placeholder="..."></td>
+									<td rowspan="3" align="center"><div class="area" id="display1"></div></td>
+								</tr>
+								<tr>
+								</tr>
+								<tr>
+									<td><button type="submit" class="btn btn-default" onclick="insert()">Submit</button></td>
+									<td><button type="submit" class="btn btn-default" onclick="insert1()">Submit</button></td>
+								</tr>
+								<tr>
+									<td rowspan="2" align="center"><div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>VM</td>
+									<td>Name:<input id="Name2" type="text" class="form-control" placeholder="..."></td>
+									<td rowspan="2" align="center"><div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>Applications</td>
+									<td>ClassName:<input id="classname" type="text" class="form-control" placeholder="..."></td>
+								</tr>
+								<tr>
+									<td>Disksize:<input id="Disksize" type="text" class="form-control" placeholder="..."></td>
+									<td>Path to jar:<input id="path" type="text" class="form-control" placeholder="..."></td>
+								</tr>
+								<tr>
+									<td rowspan="3" align="center"><div class="area" id="display2"></div></td>
+									<td>Memory size:<input id="Memory" type="text" class="form-control" placeholder="..."></td>
+									<td rowspan="3" align="center"><div class="area" id="display3"></div></td>
+								</tr>
+								<tr>
+									<td>Power:<input id="Power" type="text" class="form-control" placeholder="..."></td>
+								</tr>
+								<tr>
+									<td><button type="submit" class="btn btn-default" onclick="insert2()">Submit</button></td>
+									<td><button type="submit" class="btn btn-default" onclick="insert3()">Submit</button></td>
+								</tr>
+							</tbody>
+						</table>
+				   
 				   </div>
 				</div>
 			</div>
@@ -181,6 +216,152 @@
 	
   </div>
 </div>
+
+<!-- function Input and Show-->
+<script type="text/javascript">
+var names  = [];
+var nameInput  = document.getElementById("Name");
+var latitudes  = [];
+var latitudeInput  = document.getElementById("Latitude");
+var longtitudes  = [];
+var longtitudeInput  = document.getElementById("Longtitude");
+var messageBox  = document.getElementById("display");
+
+
+
+function insert () {
+    names.push(nameInput.value);
+	latitudes.push(latitudeInput.value);
+	longtitudes.push(longtitudeInput.value);
+    clearAndShow();
+}
+
+function clearAndShow () {
+    nameInput.value = "";
+	latitudeInput.value = "";
+	longtitudeInput.value ="";
+    messageBox.innerHTML = "";
+    messageBox.innerHTML += "Name: " + names.join("> ") + "<br>" + "Latitude: " + latitudes.join("> ") + "<br>" + "Longtitude:" + longtitudes.join("> ");
+}
+</script>
+
+<script type="text/javascript">
+var latencies  = [];
+var latencyInput  = document.getElementById("Latency");
+var messageBox1  = document.getElementById("display1");
+
+
+
+function insert1 () {
+    latencies.push(latencyInput.value);
+    clearAndShow1();
+}
+
+function clearAndShow1 () {
+    latencyInput.value = "";
+    messageBox1.innerHTML = "";
+    messageBox1.innerHTML += "Latency: " + latencies.join("> ");
+}
+</script>
+
+<script type="text/javascript">
+var name2s  = [];
+var name2Input  = document.getElementById("Name2");
+var disksizes  = [];
+var disksizeInput  = document.getElementById("Disksize");
+var memories  = [];
+var memoryInput  = document.getElementById("Memory");
+var powers = [];
+var powerInput = document.getElementById("Power");
+var messageBox2  = document.getElementById("display2");
+
+
+
+function insert2 () {
+    name2s.push(name2Input.value);
+	disksizes.push(disksizeInput.value);
+	memories.push(memoryInput.value);
+	powers.push(powerInput.value);
+    clearAndShow2();
+}
+
+function clearAndShow2 () {
+    name2Input.value = "";
+	disksizeInput.value = "";
+	memoryInput.value = "";
+	powerInput.value = "";
+    messageBox2.innerHTML = "";
+    messageBox2.innerHTML += "Name: " + name2s.join("> ") + "<br>" + "Disksize: " + disksizes.join("> ") + "<br>" + "Memory size:" + memories.join("> ") + "<br>" + "Power:" + powers.join("> ");
+}
+</script>
+
+<script type="text/javascript">
+var classnames  = [];
+var classnameInput  = document.getElementById("classname");
+var paths  = [];
+var pathInput  = document.getElementById("path");
+var messageBox3  = document.getElementById("display3");
+
+
+
+function insert3 () {
+    classnames.push(classnameInput.value);
+	paths.push(pathInput.value);
+    clearAndShow3();
+}
+
+function clearAndShow3 () {
+    classnameInput.value = "";
+	pathInput.value = "";
+    messageBox3.innerHTML = "";
+    messageBox3.innerHTML += "ClassName: " + classnames.join("> ") + "<br>" + "Path to jar:" + paths.join("> ");
+}
+</script>
+
+<!-- drag and drop-->
+<script type="text/javascript">
+function allowDrop(ev)
+{
+ev.preventDefault();
+}
+
+function drag(ev)
+{
+ev.dataTransfer.setData("Text",ev.target.id);
+}
+
+function drop(ev)
+{
+ev.preventDefault();
+var data=ev.dataTransfer.getData("Text");
+ev.target.appendChild(document.getElementById(data).cloneNode(true));
+}
+</script>
+
+<!-- filechooser-->
+<script type="text/javascript">
+                    function performClick(elemId) {
+                    var elem = document.getElementById(elemId);
+                   if(elem && document.createEvent) {
+                   var evt = document.createEvent("MouseEvents");
+                   evt.initEvent("click", true, false);
+                   elem.dispatchEvent(evt);
+</script>
+
+<!-- open local applications-->
+<script language=JavaScript> 
+function Run(strPath) { 
+try { 
+var objShell = new ActiveXObject("wscript.shell"); 
+objShell.Run(strPath); 
+objShell = null; 
+} 
+catch (e){alert('can not find the file"'+strPath+'"(Wrong)') 
+} 
+} 
+</script> 
+
+
 
 </body>
 </html>
